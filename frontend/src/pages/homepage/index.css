@@ -1,0 +1,176 @@
+*
+{
+    margin:0;
+    padding:0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.homecontainer
+{
+    background-color: #4e2307;
+    width: 100%;
+    height:100%;
+    position: relative;
+}
+.topbar
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100vw;
+    height:15vh;  
+}
+.logo
+{
+    transform: scale(0.25);
+    margin-top: 10px;
+}
+.topbar .menu
+{
+    display: flex;
+    font-weight: bold;
+    color: aliceblue;
+    margin-right:200px;
+    align-items: center;
+    justify-content: center;
+    font-size:0.8vw;
+    right:0;
+    margin-top: 20px;
+}
+.topbar .menu .employeebutton
+{
+    background-color:  #904933;
+    width:140px;
+    height:45px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 15px;
+    margin-right:10px;
+}
+.topbar .menu .employeebutton:hover
+{
+    background-color:#6571cb;
+}
+.topbar .menu h2
+{
+    margin-right:10px;
+}
+.navigation
+{
+    width:100%;
+    height:50px;
+    background-color: aliceblue;
+    margin-top:0px;
+}
+.navigation .subnav
+{
+    margin-left:150px;
+    height: 95%;
+    display:flex;
+    background-color:aliceblue;
+}
+.navigation span
+{
+    width:150px;
+    height:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:18px;
+}
+
+.navigation span:hover
+{
+    cursor: pointer;
+    border-bottom:3px solid black;
+}
+.homecontainer .boxcenter
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width:100%;
+    height: auto;
+    background-color: white;
+}
+.homecontainer .boxcenter .subboxcenter
+{
+   width:700px;
+   height:100%;
+   margin-top:50px;
+   color:aliceblue;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+}
+.homecontainer .boxcenter .subboxcenter .toptext
+{
+   border-bottom:2px solid blue;
+   font-size:14px;
+   width:160px;
+   margin-bottom:30px;
+}
+.homecontainer .boxcenter .subboxcenter hr 
+{
+    background-color: aqua;
+    height:2px;
+    border:none;
+    margin-top:-15px;
+}
+.homecontainer .boxcenter .subboxcenter p
+{
+    color: black;
+     font-size: 20px; 
+     margin-top:30px;
+     text-align: justify;
+}
+.title
+{
+   font-size:3vw;
+   font-weight:bolder;
+   margin-bottom:30px;
+}
+.loginbutton,.joinbutton:hover
+{
+    cursor: pointer;
+}
+.subtitle
+{
+   font-size:2vw;
+   font-weight:lighter;
+   margin-bottom:30px;
+}
+.subtitle.add
+{
+    color:black;
+    font-weight: bold;
+    margin-top:50px;
+}
+
+.imagemenu
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.imagemenu .socialicons
+{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom:10px;
+    margin-top:-70px;
+}
+.imagemenu .socialicons img
+{
+    margin-right: 10px;
+}
+.centerimg
+{
+    max-width:100%;
+    height: auto;
+}

@@ -1,0 +1,59 @@
+name: Backend CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch: 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Set NODE_ENV to production
+        run: echo "NODE_ENV=production" >> $GITHUB_ENV
+  
+      - name: Install Dependencies
+        run: |
+             npm ci
+             npm install pm2 -g 
+        working-directory: server/
+
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Set NODE_ENV to production
+        run: echo "NODE_ENV=production" >> $GITHUB_ENV
+
+      - name: Transfer Files and Deploy
+        run: |
+            sshpass -p '42FC#Tgd*Wesdxc' ssh -o StrictHostKeyChecking=no  ec2-user@44.201.127.74 "mkdir -p ~/project/backend/"
+
+            sshpass -p '42FC#Tgd*Wesdxc' scp -r backend/* ec2-user@44.201.127.74:~/project/backend/
+            sshpass -p '42FC#Tgd*Wesdxc' ssh -o StrictHostKeyChecking=no ec2-user@44.201.127.74 "cd ~/project/backend/ && npm install && npm install pm2 --save-dev &&  npm install cross-env"
+            sshpass -p '42FC#Tgd*Wesdxc' ssh -o StrictHostKeyChecking=no ec2-user@44.201.127.74 " cd ~/project/backend/ &&
+            if pm2 list | grep -q 'backend'; then 
+              pm2 restart backend; 
+            else 
+              pm2 start app.js --name backend; 
+            fi" 

@@ -1,0 +1,61 @@
+name: "CI/CD Pipeline Frontend"
+
+on:
+    push:
+       branches: 
+            - master
+    pull_request:
+        branches:
+            - master 
+    workflow_dispatch:         
+        
+        
+jobs:
+  build:
+    runs-on: ubuntu-latest    
+
+    steps:
+        - name: check out action
+          uses: actions/checkout@v3
+
+        - name: setup nodejs
+          uses: actions/setup-node@v3 
+          with: 
+             node-version: 20
+            
+        - name: Set NODE_ENV to production
+          run: echo "NODE_ENV=production" >> $GITHUB_ENV
+
+        - name: install npm
+          run: | 
+               npm install
+               npm install pm2
+          working-directory: frontend/         
+
+  deploy: 
+        needs: build
+        runs-on: ubuntu-latest   
+        
+        steps:
+            - name: checkout action
+              uses: actions/checkout@v3
+
+            - name: Install sshpass
+              run: sudo apt-get update && sudo apt-get install -y sshpass
+
+            
+            - name: Set NODE_ENV to production
+              run: echo "NODE_ENV=production" >> $GITHUB_ENV
+
+            - name: install node
+              run: |
+                sshpass -p '42FC#Tgd*Wesdxc' ssh -o StrictHostKeyChecking=no ec2-user@44.201.127.74 "mkdir -p ~/project/frontend"
+            
+                sshpass -p '42FC#Tgd*Wesdxc' scp -r frontend/* ec2-user@44.201.127.74:~/project/frontend
+            
+                sshpass -p '42FC#Tgd*Wesdxc' ssh -o StrictHostKeyChecking=no ec2-user@44.201.127.74 '
+                  cd ~/project/frontend &&
+                  npm install &&
+                  npm run build && 
+                  npx serve -s  build
+                '

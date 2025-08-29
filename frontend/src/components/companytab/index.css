@@ -1,0 +1,35 @@
+.companytabcontainer
+{
+  background-color: rgb(247, 243, 243);
+  width: 400px;
+  height: 100px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 30px;
+}
+.companytabcontainer .tabinfo h2
+{
+color: black;
+}
+.companytabcontainer .tabinfo h3
+{
+    color: rgb(61, 61, 61);
+    font-size: 13px;
+}
+.tabbtns
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 260px;
+}
+.tabbtns button
+{
+    padding: 2px;
+    width: 85px;
+    background-color: transparent;
+    border-radius: 50px;
+    border: 1px solid grey;
+}
