@@ -63,6 +63,5 @@ jobs:
             
             cd ~/project/frontend &&
             npm install &&
-            npm run build &&
-            npx serve -s  build
+            npm run build
           "
