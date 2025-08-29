@@ -28,7 +28,7 @@ jobs:
         run: |
              npm ci
              npm install pm2 -g 
-        working-directory: server/
+        working-directory: backend/
 
 
   deploy:
@@ -47,11 +47,11 @@ jobs:
 
       - name: Transfer Files and Deploy
         run: |
-            sshpass -p '42FC#Tgd*Wesdxc' ssh -o StrictHostKeyChecking=no  ec2-user@44.201.127.74 "mkdir -p ~/project/backend/"
+            sshpass -p '42FC#Tgd*Wesdxc' ssh -o StrictHostKeyChecking=no  ec2-user@54.162.134.75 "mkdir -p ~/project/backend/"
 
-            sshpass -p '42FC#Tgd*Wesdxc' scp -r backend/* ec2-user@44.201.127.74:~/project/backend/
-            sshpass -p '42FC#Tgd*Wesdxc' ssh -o StrictHostKeyChecking=no ec2-user@44.201.127.74 "cd ~/project/backend/ && npm install && npm install pm2 --save-dev &&  npm install cross-env"
-            sshpass -p '42FC#Tgd*Wesdxc' ssh -o StrictHostKeyChecking=no ec2-user@44.201.127.74 " cd ~/project/backend/ &&
+            sshpass -p '42FC#Tgd*Wesdxc' scp -r backend/* ec2-user@54.162.134.75:~/project/backend/
+            sshpass -p '42FC#Tgd*Wesdxc' ssh -o StrictHostKeyChecking=no ec2-user@54.162.134.75 "cd ~/project/backend/ && npm install && npm install pm2 --save-dev &&  npm install cross-env"
+            sshpass -p '42FC#Tgd*Wesdxc' ssh -o StrictHostKeyChecking=no ec2-user@54.162.134.75 " cd ~/project/backend/ &&
             if pm2 list | grep -q 'backend'; then 
               pm2 restart backend; 
             else 
