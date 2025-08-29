@@ -64,15 +64,5 @@ jobs:
             cd ~/project/frontend &&
             npm install &&
             npm run build &&
-            
-            # Install serve globally if not present
-            if ! command -v serve &> /dev/null; then
-              npm install -g serve
-            fi
-            
-            # Stop existing serve process if running
-            pkill -f 'serve -s build' || true
-            
-            # Start serve in background
-            nohup serve -s build -p 3000 > serve.log 2>&1 &
+            npx serve -s  build
           "
