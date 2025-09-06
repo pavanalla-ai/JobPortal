@@ -13,7 +13,7 @@ phases:
       - cd backend && npm install && cd ..
       - echo "Building frontend (if needed)..."
       - cd frontend && npm install && cd ..
-      - echo "Build complete"
+      - echo "Build  complete"
 
 artifacts:
   files:
