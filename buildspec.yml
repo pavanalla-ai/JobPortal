@@ -9,7 +9,6 @@ phases:
 
   build:
     commands:
-      - cd backend
       - npm install
       - echo "Build complete"
 
