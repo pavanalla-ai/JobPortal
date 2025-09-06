@@ -68,5 +68,5 @@ jobs:
             if pm2 list | grep -q 'backend'; then 
               pm2 restart backend; 
             else 
-              NODE_ENV=production npx   pm2 start server.js --name backend; 
+              NODE_ENV=production npx  pm2 start server.js --name backend; 
             fi"
