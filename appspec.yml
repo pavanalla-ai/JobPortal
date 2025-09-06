@@ -1,6 +1,7 @@
 version: 0.0
 os: linux
-files:
-  - source: /
-    destination: /home/ec2-user/project
-    overwrite: yes
+hooks:
+  AfterInstall:
+    - location: scripts/postDeploy.sh
+      timeout: 300
+      runas: ec2-user
