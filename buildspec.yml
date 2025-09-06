@@ -6,10 +6,15 @@ phases:
       nodejs: 20
     commands:
       - npm install -g pm2
+      - cd backend
+      - npm install
+      - cd ..   # go back to repo root
 
   build:
     commands:
-      - cd backend
-      - npm install
       - echo "Build complete"
 
+artifacts:
+  files:
+    - '**/*'        # include everything
+  base-directory: .  # repo root
