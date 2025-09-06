@@ -1,20 +1,19 @@
-version: 0.2
-
 phases:
   install:
     runtime-versions:
       nodejs: 20
     commands:
       - npm install -g pm2
-      - cd backend
-      - npm install
-      - cd ..   # go back to repo root
 
   build:
     commands:
+      - echo "Building backend..."
+      - cd backend && npm install && cd ..
+      - echo "Building frontend (if needed)..."
+      - cd frontend && npm install && cd ..
       - echo "Build complete"
 
 artifacts:
   files:
-    - '**/*'        # include everything
-  base-directory: .  # repo root
+    - '**/*'
+  base-directory: .
